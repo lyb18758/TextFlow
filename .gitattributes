@@ -1,0 +1,14 @@
+# Normalize detected text, including Python/Markdown/YAML, to LF.
+* text=auto eol=lf
+*.sh text eol=lf
+
+# Images must not receive text conversion or textual diffs.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.bmp binary
+*.tif binary
+*.tiff binary
+*.ico binary

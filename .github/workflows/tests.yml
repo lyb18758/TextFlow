@@ -1,0 +1,42 @@
+name: CPU regression tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: Python ${{ matrix.python-version }} / CPU
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11"]
+    env:
+      CUDA_VISIBLE_DEVICES: ""
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install only the lightweight test dependency
+        run: python -m pip install --disable-pip-version-check --no-deps Pillow==11.3.0
+      # 27 tests in total: 11 entry/helper, 8 FLUX, 8 LongCat.
+      # Do not install requirements.txt, torch, diffusers or model weights.
+      - name: Entry and helper tests (11)
+        run: python -B -m unittest discover -s tests -v
+      - name: FLUX pipeline contract tests (8)
+        run: python -B -m unittest discover -s textflow_flux -p test_pipeline_safety.py -v
+      - name: LongCat pipeline contract tests (8)
+        run: python -B -m unittest discover -s textflow_longcat -p test_pipeline_safety.py -v

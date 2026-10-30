@@ -1,0 +1,32 @@
+# User-provided models/data and generated results (repository root only).
+/models/
+/data/
+/outputs/
+/generated_image/
+
+# Local environments and caches.
+/.venv/
+/venv/
+/.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local credentials only; do not ignore nested source or test fixtures.
+/.env
+/.env.*
+!/.env.example
+/.secrets/
+/secrets/
+/credentials.json
+/service-account*.json
+/*.pem
+/*.key
+
+# Local editor/OS files.
+/.idea/
+/.vscode/
+.DS_Store
+Thumbs.db

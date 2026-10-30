@@ -1,0 +1,17 @@
+TextFlow
+Research code for "Towards Training-Free Scene Text Editing".
+
+Original TextFlow contributions are distributed under the Apache License 2.0.
+
+This distribution contains code adapted from Hugging Face diffusers
+(https://github.com/huggingface/diffusers), including FLUX-Kontext and
+LongCat-related model and pipeline implementations. Existing upstream
+copyright and license notices are retained in the source files. The
+diffusers license is also included in third_party/diffusers/LICENSE.
+
+TextFlow modifications include scene text editing, Flow Manifold Steering,
+attention-modulated overshoot sampling, and inference safety fixes.
+Modified backend files carry a notice identifying these adaptations.
+
+Model weights and datasets are not distributed with this release and
+remain subject to their respective licenses and access conditions.

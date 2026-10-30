@@ -1,0 +1,29 @@
+# Inference dependencies retained from the original research environment.
+# Recommended Python: 3.10 or 3.11. See README.md for CUDA setup.
+# Install a suitable CUDA build of PyTorch before installing this file.
+# CUDA/NCCL/Triton wheels and other transitive dependencies are managed upstream.
+
+# Model runtime
+torch==2.7.1
+torchvision==0.22.1
+transformers==4.54.1
+accelerate==1.9.0
+peft==0.17.0
+
+# Custom pipelines depend on internal APIs at this exact diffusers commit.
+# Git must be available to pip; do not substitute an arbitrary PyPI release.
+diffusers @ git+https://github.com/huggingface/diffusers.git@d7a1c31f4f85bae5a9e01cdce49bd7346bd8ccd6
+
+# Model loading and tokenizer support
+huggingface-hub==0.34.3
+safetensors==0.5.3
+tokenizers==0.21.4
+sentencepiece==0.2.0
+protobuf==6.31.1
+ftfy==6.3.1
+
+# Image/array processing, progress and Accelerate configuration
+numpy==2.2.6
+Pillow==11.3.0
+tqdm==4.67.1
+PyYAML==6.0.2
